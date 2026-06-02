@@ -30,14 +30,14 @@
       "ageGroups": ["adult"]
     },
     {
-      "id": "liberty-pocket-tee",
-      "name": "Liberty Pocket Tee",
-      "description": "Soft cotton pocket tee with a small flag embroidered on the chest pocket.",
+      "id": "kids-tee",
+      "name": "Kids Tee",
+      "description": "Gildan SoftStyle Tee for Kiddos",
       "price": 25,
-      "color": "Faded Red",
-      "image": "images/liberty-pocket-tee.jpg",
-      "imageAlt": "Liberty Pocket Tee mockup",
-      "ageGroups": ["adult", "youth"]
+      "color": "Natural",
+      "image": "images/002.PNG",
+      "imageAlt": "Youth sizes",
+      "ageGroups": ["youth"]
     }
   ]
 }
