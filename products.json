@@ -20,13 +20,13 @@
       "ageGroups": ["adult"]
     },
     {
-      "id": "fireworks-tank",
-      "name": "Fireworks Tank",
-      "description": "Lightweight tank top featuring a burst-of-fireworks back print. Great for the parade or pool.",
-      "price": 20,
-      "color": "Vintage White",
-      "image": "images/fireworks-tank.jpg",
-      "imageAlt": "Fireworks Tank mockup",
+      "id": "womens-vneck",
+      "name": "Women's V-Neck",
+      "description": "Bella+Canvas Tri-Blend Short-Sleeve V-Neck T-Shirt",
+      "price": 30,
+      "color": "Oatmeal Triblend",
+      "image": "images/001.png",
+      "imageAlt": "V-Neck Tank mockup",
       "ageGroups": ["adult"]
     },
     {
@@ -37,16 +37,6 @@
       "color": "Faded Red",
       "image": "images/liberty-pocket-tee.jpg",
       "imageAlt": "Liberty Pocket Tee mockup",
-      "ageGroups": ["adult", "youth"]
-    },
-    {
-      "id": "all-american-long-sleeve",
-      "name": "All-American Long Sleeve",
-      "description": "Long-sleeve baseball-style tee with contrast sleeves and a vintage 1776 graphic.",
-      "price": 28,
-      "color": "Cream / Navy Sleeves",
-      "image": "images/all-american-long-sleeve.jpg",
-      "imageAlt": "All-American Long Sleeve mockup",
       "ageGroups": ["adult", "youth"]
     }
   ]
