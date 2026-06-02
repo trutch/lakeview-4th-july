@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lakeview Fourth of July — T-Shirt Order</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #f4ead5;
+    --paper: #ede1c4;
+    --ink: #1a1c2c;
+    --navy: #1d3557;
+    --red: #b3322e;
+    --red-deep: #8a1c1c;
+    --gold: #c9a449;
+    --rule: #1a1c2c;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'Crimson Pro', Georgia, serif;
+    font-size: 17px;
+    line-height: 1.55;
+  }
+
+  body {
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(179, 50, 46, 0.06) 0, transparent 40%),
+      radial-gradient(circle at 80% 90%, rgba(29, 53, 87, 0.07) 0, transparent 40%),
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/><feColorMatrix values='0 0 0 0 0.1 0 0 0 0 0.1 0 0 0 0 0.15 0 0 0 0.08 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  }
+
+  /* --- HEADER --- */
+  header {
+    border-bottom: 3px double var(--rule);
+    padding: 28px 24px 22px;
+    text-align: center;
+    position: relative;
+  }
+  header::before, header::after {
+    content: "★";
+    color: var(--red);
+    font-size: 22px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  header::before { left: 24px; }
+  header::after  { right: 24px; }
+
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--navy);
+    margin-bottom: 8px;
+  }
+  h1 {
+    font-family: 'Abril Fatface', serif;
+    font-size: clamp(38px, 7vw, 64px);
+    line-height: 1;
+    color: var(--red-deep);
+    letter-spacing: -0.01em;
+  }
+  .subtitle {
+    font-style: italic;
+    color: var(--navy);
+    margin-top: 6px;
+  }
+  .deadline {
+    margin-top: 14px;
+    display: inline-block;
+    border: 1px solid var(--ink);
+    padding: 6px 14px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: var(--cream);
+  }
+
+  /* --- LAYOUT --- */
+  main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 36px 24px 120px;
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 48px;
+  }
+  @media (max-width: 900px) {
+    main { grid-template-columns: 1fr; }
+  }
+
+  section h2 {
+    font-family: 'Abril Fatface', serif;
+    font-size: 28px;
+    color: var(--navy);
+    margin-bottom: 18px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--ink);
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+  }
+  section h2 .num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--red);
+    letter-spacing: 0.2em;
+  }
+
+  /* --- FAMILY INFO --- */
+  .info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 36px;
+  }
+  @media (max-width: 600px) { .info-grid { grid-template-columns: 1fr; } }
+  .field label {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--navy);
+    margin-bottom: 6px;
+  }
+  .field input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--ink);
+    background: var(--paper);
+    font-family: inherit;
+    font-size: 16px;
+    color: var(--ink);
+  }
+  .field input:focus {
+    outline: 2px solid var(--red);
+    outline-offset: -1px;
+  }
+
+  /* --- PRODUCTS --- */
+  .styles { display: flex; flex-direction: column; gap: 28px; }
+  .style-card {
+    border: 1px solid var(--ink);
+    background: var(--paper);
+    padding: 22px;
+    position: relative;
+  }
+  .style-card::before {
+    content: "";
+    position: absolute;
+    inset: 4px;
+    border: 1px dashed rgba(26, 28, 44, 0.25);
+    pointer-events: none;
+  }
+  .style-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 6px;
+  }
+  .style-name {
+    font-family: 'Abril Fatface', serif;
+    font-size: 26px;
+    color: var(--red-deep);
+    line-height: 1.1;
+  }
+  .style-price {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    background: var(--ink);
+    color: var(--cream);
+    padding: 4px 8px;
+    white-space: nowrap;
+  }
+  .style-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--navy);
+    margin-bottom: 10px;
+  }
+  .style-desc { margin-bottom: 16px; font-size: 16px; }
+
+  .size-rows { display: flex; flex-direction: column; gap: 10px; }
+  .size-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    padding-top: 10px;
+    border-top: 1px dotted rgba(26, 28, 44, 0.3);
+  }
+  .size-row-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--navy);
+    min-width: 56px;
+  }
+  .size-btn {
+    background: var(--cream);
+    border: 1px solid var(--ink);
+    padding: 4px 10px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: background 0.15s, color 0.15s;
+  }
+  .size-btn:hover { background: var(--ink); color: var(--cream); }
+  .size-btn .qty {
+    background: var(--red);
+    color: var(--cream);
+    padding: 0 5px;
+    border-radius: 2px;
+    font-size: 11px;
+    min-width: 16px;
+    text-align: center;
+  }
+  .size-btn .qty.zero { background: transparent; color: rgba(26, 28, 44, 0.4); }
+
+  /* --- CART --- */
+  aside {
+    position: sticky;
+    top: 24px;
+    align-self: start;
+    border: 2px solid var(--ink);
+    background: var(--cream);
+    padding: 22px;
+    box-shadow: 6px 6px 0 var(--ink);
+  }
+  @media (max-width: 900px) {
+    aside { position: static; box-shadow: 4px 4px 0 var(--ink); }
+  }
+  aside h2 { margin-bottom: 14px; }
+  .cart-empty {
+    font-style: italic;
+    color: rgba(26, 28, 44, 0.55);
+    padding: 12px 0;
+  }
+  .cart-list { list-style: none; margin-bottom: 14px; }
+  .cart-list li {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 8px 0;
+    border-bottom: 1px dotted rgba(26, 28, 44, 0.3);
+    font-size: 15px;
+  }
+  .cart-item-info { flex: 1; }
+  .cart-item-name { font-weight: 600; }
+  .cart-item-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--navy);
+    letter-spacing: 0.08em;
+  }
+  .cart-item-price {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    white-space: nowrap;
+  }
+  .cart-totals {
+    border-top: 2px solid var(--ink);
+    padding-top: 12px;
+    margin-top: 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+  .cart-totals .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+  .cart-totals .total {
+    font-family: 'Abril Fatface', serif;
+    font-size: 32px;
+    color: var(--red-deep);
+  }
+  .submit-btn {
+    margin-top: 16px;
+    width: 100%;
+    background: var(--red);
+    color: var(--cream);
+    border: 2px solid var(--ink);
+    padding: 14px;
+    font-family: 'Abril Fatface', serif;
+    font-size: 20px;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    transition: transform 0.1s, background 0.15s;
+  }
+  .submit-btn:hover:not(:disabled) { background: var(--red-deep); transform: translate(-1px, -1px); }
+  .submit-btn:disabled { background: rgba(26, 28, 44, 0.25); cursor: not-allowed; }
+
+  .note {
+    margin-top: 10px;
+    font-size: 12px;
+    font-style: italic;
+    color: var(--navy);
+    text-align: center;
+  }
+
+  footer {
+    text-align: center;
+    padding: 20px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--navy);
+    border-top: 3px double var(--rule);
+  }
+
+  .loading, .error {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 40px;
+    font-style: italic;
+  }
+  .error { color: var(--red-deep); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="eyebrow">Est. 1776 — Reordered Every July</div>
+  <h1 id="event-title">Family Fourth of July</h1>
+  <div class="subtitle" id="event-subtitle">Order your shirts</div>
+  <div class="deadline" id="event-deadline"></div>
+</header>
+
+<main>
+  <section>
+    <h2>Family Info <span class="num">/ 01</span></h2>
+    <div class="info-grid">
+      <div class="field">
+        <label for="family-name">Family / Last Name</label>
+        <input type="text" id="family-name" placeholder="e.g. The Smiths" />
+      </div>
+      <div class="field">
+        <label for="contact-name">Contact Name</label>
+        <input type="text" id="contact-name" placeholder="Who's ordering" />
+      </div>
+      <div class="field">
+        <label for="contact-email">Email</label>
+        <input type="email" id="contact-email" placeholder="you@example.com" />
+      </div>
+      <div class="field">
+        <label for="contact-phone">Phone (optional)</label>
+        <input type="tel" id="contact-phone" placeholder="(555) 555-5555" />
+      </div>
+    </div>
+
+    <h2>Choose Styles &amp; Sizes <span class="num">/ 02</span></h2>
+    <div class="styles" id="styles">
+      <div class="loading">Loading shirt styles…</div>
+    </div>
+  </section>
+
+  <aside>
+    <h2>Your Cart <span class="num">/ 03</span></h2>
+    <div id="cart-body">
+      <div class="cart-empty">No shirts selected yet. Tap a size to add one.</div>
+    </div>
+    <button class="submit-btn" id="submit-btn" disabled>Submit Order</button>
+    <div class="note">Opens your email app with the order details.</div>
+  </aside>
+</main>
+
+<footer>★ ★ ★ &nbsp;&nbsp; One Nation, One Family Reunion &nbsp;&nbsp; ★ ★ ★</footer>
+
+<script>
+  // ====== CONFIG ======
+  // Change this to the email that should receive orders
+  const ORDER_RECIPIENT_EMAIL = "trutch+lakeview4th@gmail.com";
+  const DATA_URL = "file:///C:/Users/trutc/Dropbox/PARA/0-Projects/Lakeview%204th%20of%20July%20(2026)/products.json";
+  //const DATA_URL = "products.json";
+
+  // ====== STATE ======
+  let data = null;
+  // cart: { "styleId|size|ageGroup": { styleId, styleName, size, ageGroup, qty, price } }
+  const cart = {};
+
+  // ====== LOAD DATA ======
+  async function loadData() {
+    try {
+      const res = await fetch(DATA_URL, { headers: { Accept: "application/json" } });
+      if (!res.ok) throw new Error("Failed to load " + DATA_URL + " (" + res.status + ")");
+      data = await res.json();
+      renderHeader();
+      renderStyles();
+    } catch (err) {
+      document.getElementById("styles").innerHTML =
+        '<div class="error">Could not load products.json — ' + err.message + '</div>';
+    }
+  }
+
+  function renderHeader() {
+    if (data.event?.title)    document.getElementById("event-title").textContent = data.event.title;
+    if (data.event?.subtitle) document.getElementById("event-subtitle").textContent = data.event.subtitle;
+    if (data.event?.deadline) document.getElementById("event-deadline").textContent = data.event.deadline;
+  }
+
+  function renderStyles() {
+    const container = document.getElementById("styles");
+    container.innerHTML = "";
+    data.styles.forEach(style => {
+      const card = document.createElement("div");
+      card.className = "style-card";
+
+      let sizeRowsHtml = "";
+      style.ageGroups.forEach(group => {
+        const sizes = data.sizes[group] || [];
+        const label = group === "youth" ? "Youth" : "Adult";
+        const buttons = sizes.map(size => {
+          const key = cartKey(style.id, size, group);
+          const qty = cart[key]?.qty || 0;
+          return `<button class="size-btn" data-style="${style.id}" data-size="${size}" data-group="${group}">
+                    ${size} <span class="qty ${qty === 0 ? "zero" : ""}">${qty}</span>
+                  </button>`;
+        }).join("");
+        sizeRowsHtml += `
+          <div class="size-row">
+            <span class="size-row-label">${label}</span>
+            ${buttons}
+          </div>`;
+      });
+
+      card.innerHTML = `
+        <div class="style-head">
+          <div class="style-name">${style.name}</div>
+          <div class="style-price">$${style.price}</div>
+        </div>
+        <div class="style-meta">${style.color}</div>
+        <div class="style-desc">${style.description}</div>
+        <div class="size-rows">${sizeRowsHtml}</div>
+      `;
+      container.appendChild(card);
+    });
+
+    container.querySelectorAll(".size-btn").forEach(btn => {
+      btn.addEventListener("click", e => {
+        // shift-click decrements
+        const decrement = e.shiftKey;
+        addToCart(btn.dataset.style, btn.dataset.size, btn.dataset.group, decrement ? -1 : 1);
+      });
+      btn.addEventListener("contextmenu", e => {
+        e.preventDefault();
+        addToCart(btn.dataset.style, btn.dataset.size, btn.dataset.group, -1);
+      });
+    });
+  }
+
+  function cartKey(styleId, size, ageGroup) {
+    return styleId + "|" + size + "|" + ageGroup;
+  }
+
+  function addToCart(styleId, size, ageGroup, delta) {
+    const style = data.styles.find(s => s.id === styleId);
+    if (!style) return;
+    const key = cartKey(styleId, size, ageGroup);
+    if (!cart[key]) {
+      cart[key] = { styleId, styleName: style.name, size, ageGroup, qty: 0, price: style.price };
+    }
+    cart[key].qty += delta;
+    if (cart[key].qty <= 0) delete cart[key];
+    renderStyles();
+    renderCart();
+  }
+
+  function renderCart() {
+    const body = document.getElementById("cart-body");
+    const submit = document.getElementById("submit-btn");
+    const items = Object.values(cart);
+
+    if (items.length === 0) {
+      body.innerHTML = '<div class="cart-empty">No shirts selected yet. Tap a size to add one.</div>';
+      submit.disabled = true;
+      return;
+    }
+
+    const total = items.reduce((sum, i) => sum + i.qty * i.price, 0);
+    const totalQty = items.reduce((sum, i) => sum + i.qty, 0);
+
+    let html = '<ul class="cart-list">';
+    items.forEach(i => {
+      const groupLabel = i.ageGroup === "youth" ? "Youth" : "Adult";
+      html += `
+        <li>
+          <div class="cart-item-info">
+            <div class="cart-item-name">${i.styleName}</div>
+            <div class="cart-item-meta">${groupLabel} · ${i.size} · ×${i.qty}</div>
+          </div>
+          <div class="cart-item-price">$${i.qty * i.price}</div>
+        </li>`;
+    });
+    html += "</ul>";
+    html += `
+      <div class="cart-totals">
+        <span class="label">${totalQty} shirt${totalQty === 1 ? "" : "s"}</span>
+        <span class="total">$${total}</span>
+      </div>`;
+    body.innerHTML = html;
+    submit.disabled = false;
+  }
+
+  // ====== SUBMIT ======
+  document.getElementById("submit-btn").addEventListener("click", submitOrder);
+
+  function submitOrder() {
+    const familyName  = document.getElementById("family-name").value.trim();
+    const contactName = document.getElementById("contact-name").value.trim();
+    const contactEmail = document.getElementById("contact-email").value.trim();
+    const contactPhone = document.getElementById("contact-phone").value.trim();
+
+    if (!familyName || !contactName || !contactEmail) {
+      alert("Please fill in family name, contact name, and email before submitting.");
+      return;
+    }
+
+    const items = Object.values(cart);
+    const total = items.reduce((sum, i) => sum + i.qty * i.price, 0);
+
+    const orderPayload = {
+      event: data.event?.title || "Family Fourth of July",
+      submittedAt: new Date().toISOString(),
+      family: {
+        name: familyName,
+        contactName,
+        email: contactEmail,
+        phone: contactPhone
+      },
+      items: items.map(i => ({
+        style: i.styleName,
+        styleId: i.styleId,
+        ageGroup: i.ageGroup,
+        size: i.size,
+        quantity: i.qty,
+        unitPrice: i.price,
+        lineTotal: i.qty * i.price
+      })),
+      total
+    };
+
+    // Plain-text body for the email
+    let body = `New t-shirt order\n`;
+    body += `==================\n\n`;
+    body += `Family: ${familyName}\n`;
+    body += `Contact: ${contactName}\n`;
+    body += `Email: ${contactEmail}\n`;
+    if (contactPhone) body += `Phone: ${contactPhone}\n`;
+    body += `Submitted: ${orderPayload.submittedAt}\n\n`;
+    body += `Items:\n`;
+    items.forEach(i => {
+      const groupLabel = i.ageGroup === "youth" ? "Youth" : "Adult";
+      body += `  - ${i.styleName} (${groupLabel} ${i.size}) ×${i.qty} @ $${i.price} = $${i.qty * i.price}\n`;
+    });
+    body += `\nTotal: $${total}\n\n`;
+    body += `---- JSON payload (application/json) ----\n`;
+    body += JSON.stringify(orderPayload, null, 2);
+
+    const subject = `T-Shirt Order — ${familyName} (${items.reduce((s,i)=>s+i.qty,0)} shirts, $${total})`;
+    const mailto =
+      "mailto:" + encodeURIComponent(ORDER_RECIPIENT_EMAIL) +
+      "?subject=" + encodeURIComponent(subject) +
+      "&body=" + encodeURIComponent(body);
+
+    window.location.href = mailto;
+  }
+
+  loadData();
+</script>
+</body>
+</html>

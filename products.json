@@ -1,0 +1,45 @@
+{
+  "event": {
+    "title": "Family Fourth of July 2026",
+    "subtitle": "Order your shirts",
+    "deadline": "Orders due by June 20, 2026"
+  },
+  "sizes": {
+    "adult": ["S", "M", "L", "XL", "2XL", "3XL"],
+    "youth": ["YS", "YM", "YL", "YXL"]
+  },
+  "styles": [
+    {
+      "id": "stars-stripes-tee",
+      "name": "Stars & Stripes Tee",
+      "description": "Classic crew neck with a hand-drawn stars-and-stripes graphic across the chest.",
+      "price": 22,
+      "color": "Heather Navy",
+      "ageGroups": ["adult", "youth"]
+    },
+    {
+      "id": "fireworks-tank",
+      "name": "Fireworks Tank",
+      "description": "Lightweight tank top featuring a burst-of-fireworks back print. Great for the parade or pool.",
+      "price": 20,
+      "color": "Vintage White",
+      "ageGroups": ["adult"]
+    },
+    {
+      "id": "liberty-pocket-tee",
+      "name": "Liberty Pocket Tee",
+      "description": "Soft cotton pocket tee with a small flag embroidered on the chest pocket.",
+      "price": 25,
+      "color": "Faded Red",
+      "ageGroups": ["adult", "youth"]
+    },
+    {
+      "id": "all-american-long-sleeve",
+      "name": "All-American Long Sleeve",
+      "description": "Long-sleeve baseball-style tee with contrast sleeves and a vintage 1776 graphic.",
+      "price": 28,
+      "color": "Cream / Navy Sleeves",
+      "ageGroups": ["adult", "youth"]
+    }
+  ]
+}
