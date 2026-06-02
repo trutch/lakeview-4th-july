@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Lakeview Fourth of July — T-Shirt Order</title>
+<title>Family Fourth of July — T-Shirt Order</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
@@ -155,6 +155,10 @@
     background: var(--paper);
     padding: 22px;
     position: relative;
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 22px;
+    align-items: start;
   }
   .style-card::before {
     content: "";
@@ -163,6 +167,38 @@
     border: 1px dashed rgba(26, 28, 44, 0.25);
     pointer-events: none;
   }
+  @media (max-width: 600px) {
+    .style-card { grid-template-columns: 1fr; }
+  }
+
+  .style-image {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background: var(--cream);
+    border: 1px solid var(--ink);
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .style-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .style-image-fallback {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(26, 28, 44, 0.4);
+    text-align: center;
+    padding: 12px;
+  }
+  .style-body { min-width: 0; }
+
   .style-head {
     display: flex;
     justify-content: space-between;
@@ -342,8 +378,8 @@
 <body>
 
 <header>
-  <div class="eyebrow">Est. 1776</div>
-  <h1 id="event-title">Lakeview Fourth of July</h1>
+  <div class="eyebrow">Est. 1776 — Reordered Every July</div>
+  <h1 id="event-title">Family Fourth of July</h1>
   <div class="subtitle" id="event-subtitle">Order your shirts</div>
   <div class="deadline" id="event-deadline"></div>
 </header>
@@ -386,12 +422,12 @@
   </aside>
 </main>
 
-<footer>★ ★ ★ &nbsp;&nbsp; One Nation, One Family Gathering &nbsp;&nbsp; ★ ★ ★</footer>
+<footer>★ ★ ★ &nbsp;&nbsp; One Nation, One Family Reunion &nbsp;&nbsp; ★ ★ ★</footer>
 
 <script>
   // ====== CONFIG ======
   // Change this to the email that should receive orders
-  const ORDER_RECIPIENT_EMAIL = "trutch+lakeview4th@gmail.com";
+  const ORDER_RECIPIENT_EMAIL = "you@example.com";
   const DATA_URL = "products.json";
 
   // ====== STATE ======
@@ -444,14 +480,22 @@
           </div>`;
       });
 
+      const imageHtml = style.image
+        ? `<img src="${style.image}" alt="${style.imageAlt || style.name}"
+              onerror="this.parentElement.innerHTML='<div class=&quot;style-image-fallback&quot;>Image<br>coming soon</div>'" />`
+        : `<div class="style-image-fallback">No image</div>`;
+
       card.innerHTML = `
-        <div class="style-head">
-          <div class="style-name">${style.name}</div>
-          <div class="style-price">$${style.price}</div>
+        <div class="style-image">${imageHtml}</div>
+        <div class="style-body">
+          <div class="style-head">
+            <div class="style-name">${style.name}</div>
+            <div class="style-price">$${style.price}</div>
+          </div>
+          <div class="style-meta">${style.color}</div>
+          <div class="style-desc">${style.description}</div>
+          <div class="size-rows">${sizeRowsHtml}</div>
         </div>
-        <div class="style-meta">${style.color}</div>
-        <div class="style-desc">${style.description}</div>
-        <div class="size-rows">${sizeRowsHtml}</div>
       `;
       container.appendChild(card);
     });
@@ -540,7 +584,7 @@
     const total = items.reduce((sum, i) => sum + i.qty * i.price, 0);
 
     const orderPayload = {
-      event: data.event?.title || "Lakeview Fourth of July",
+      event: data.event?.title || "Family Fourth of July",
       submittedAt: new Date().toISOString(),
       family: {
         name: familyName,

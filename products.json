@@ -15,6 +15,8 @@
       "description": "Classic crew neck with a hand-drawn stars-and-stripes graphic across the chest.",
       "price": 22,
       "color": "Heather Navy",
+      "image": "images/stars-stripes-tee.jpg",
+      "imageAlt": "Stars and Stripes Tee mockup",
       "ageGroups": ["adult", "youth"]
     },
     {
@@ -23,6 +25,8 @@
       "description": "Lightweight tank top featuring a burst-of-fireworks back print. Great for the parade or pool.",
       "price": 20,
       "color": "Vintage White",
+      "image": "images/fireworks-tank.jpg",
+      "imageAlt": "Fireworks Tank mockup",
       "ageGroups": ["adult"]
     },
     {
@@ -31,6 +35,8 @@
       "description": "Soft cotton pocket tee with a small flag embroidered on the chest pocket.",
       "price": 25,
       "color": "Faded Red",
+      "image": "images/liberty-pocket-tee.jpg",
+      "imageAlt": "Liberty Pocket Tee mockup",
       "ageGroups": ["adult", "youth"]
     },
     {
@@ -39,6 +45,8 @@
       "description": "Long-sleeve baseball-style tee with contrast sleeves and a vintage 1776 graphic.",
       "price": 28,
       "color": "Cream / Navy Sleeves",
+      "image": "images/all-american-long-sleeve.jpg",
+      "imageAlt": "All-American Long Sleeve mockup",
       "ageGroups": ["adult", "youth"]
     }
   ]
