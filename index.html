@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Lakeview Fourth of July — T-Shirt Order</title>
+<title>Lakeview Fourth of July 2026 — T-Shirt Order</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
@@ -326,6 +326,16 @@
     letter-spacing: 0.2em;
     text-transform: uppercase;
   }
+  .cart-totals .est {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--navy);
+    text-align: right;
+    display: block;
+    margin-top: 2px;
+  }
   .cart-totals .total {
     font-family: 'Abril Fatface', serif;
     font-size: 32px;
@@ -373,13 +383,199 @@
     font-style: italic;
   }
   .error { color: var(--red-deep); }
+
+  /* --- ORDER SUMMARY OVERLAY --- */
+  .overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(26, 28, 44, 0.65);
+    display: none;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 28px 16px;
+    z-index: 100;
+    overflow-y: auto;
+  }
+  .overlay.visible { display: flex; }
+
+  .summary {
+    background: var(--cream);
+    border: 2px solid var(--ink);
+    box-shadow: 8px 8px 0 var(--ink);
+    max-width: 520px;
+    width: 100%;
+    padding: 32px 28px 28px;
+    position: relative;
+    background-image:
+      radial-gradient(circle at 0% 0%, rgba(179, 50, 46, 0.08) 0, transparent 35%),
+      radial-gradient(circle at 100% 100%, rgba(29, 53, 87, 0.08) 0, transparent 35%);
+  }
+
+  .summary-close {
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: var(--ink);
+    cursor: pointer;
+    font-family: 'JetBrains Mono', monospace;
+    padding: 4px 8px;
+    line-height: 1;
+  }
+  .summary-close:hover { color: var(--red-deep); }
+
+  .summary-header {
+    text-align: center;
+    border-bottom: 3px double var(--ink);
+    padding-bottom: 16px;
+    margin-bottom: 18px;
+    position: relative;
+  }
+  .summary-header::before, .summary-header::after {
+    content: "★";
+    color: var(--red);
+    font-size: 16px;
+    position: absolute;
+    top: 4px;
+  }
+  .summary-header::before { left: 0; }
+  .summary-header::after { right: 0; }
+
+  .summary-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--navy);
+    margin-bottom: 6px;
+  }
+  .summary-family {
+    font-family: 'Abril Fatface', serif;
+    font-size: 36px;
+    color: var(--red-deep);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .summary-event {
+    font-style: italic;
+    font-size: 15px;
+    color: var(--navy);
+  }
+  .summary-by {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--navy);
+    margin-top: 8px;
+  }
+
+  .summary-section-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--navy);
+    margin-bottom: 10px;
+  }
+  .summary-items {
+    list-style: none;
+    margin-bottom: 18px;
+  }
+  .summary-items li {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 9px 0;
+    border-bottom: 1px dotted rgba(26, 28, 44, 0.3);
+  }
+  .summary-item-name { font-weight: 600; font-size: 16px; }
+  .summary-item-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--navy);
+    letter-spacing: 0.08em;
+    margin-top: 2px;
+  }
+  .summary-item-price {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    white-space: nowrap;
+    align-self: flex-start;
+  }
+
+  .summary-total-block {
+    border-top: 2px solid var(--ink);
+    padding-top: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+  .summary-total-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+  .summary-total {
+    font-family: 'Abril Fatface', serif;
+    font-size: 36px;
+    color: var(--red-deep);
+  }
+  .summary-est {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--navy);
+    margin-top: 4px;
+    font-style: italic;
+    text-align: right;
+  }
+  .summary-footer {
+    text-align: center;
+    margin-top: 22px;
+    padding-top: 14px;
+    border-top: 1px dashed rgba(26, 28, 44, 0.4);
+    font-style: italic;
+    font-size: 14px;
+    color: var(--navy);
+  }
+  .summary-stars {
+    text-align: center;
+    color: var(--red);
+    letter-spacing: 0.5em;
+    margin-top: 8px;
+  }
+  .summary-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 18px;
+  }
+  .summary-actions button {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid var(--ink);
+    background: var(--paper);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+  .summary-actions button:hover { background: var(--ink); color: var(--cream); }
+  @media print {
+    .summary-actions, .summary-close { display: none; }
+  }
 </style>
 </head>
 <body>
 
 <header>
-  <div class="eyebrow">Est. 1776</div>
-  <h1 id="event-title">Lakeview Fourth of July</h1>
+  <div class="eyebrow">Est. 1776 — Reordered Every July</div>
+  <h1 id="event-title">Lakeview Fourth of July 2026</h1>
   <div class="subtitle" id="event-subtitle">Order your shirts</div>
   <div class="deadline" id="event-deadline"></div>
 </header>
@@ -393,16 +589,8 @@
         <input type="text" id="family-name" placeholder="e.g. The Smiths" />
       </div>
       <div class="field">
-        <label for="contact-name">Contact Name</label>
-        <input type="text" id="contact-name" placeholder="Who's ordering" />
-      </div>
-      <div class="field">
-        <label for="contact-email">Email</label>
-        <input type="email" id="contact-email" placeholder="you@example.com" />
-      </div>
-      <div class="field">
-        <label for="contact-phone">Phone (optional)</label>
-        <input type="tel" id="contact-phone" placeholder="(555) 555-5555" />
+        <label for="contact-name">Your Name</label>
+        <input type="text" id="contact-name" placeholder="Who's placing the order" />
       </div>
     </div>
 
@@ -417,17 +605,19 @@
     <div id="cart-body">
       <div class="cart-empty">No shirts selected yet. Tap a size to add one.</div>
     </div>
-    <button class="submit-btn" id="submit-btn" disabled>Submit Order</button>
-    <div class="note">Opens your email app with the order details.</div>
+    <button class="submit-btn" id="submit-btn" disabled>Review Order</button>
+    <div class="note">Prices are estimates. Final cost depends on total order quantity.</div>
   </aside>
 </main>
 
 <footer>★ ★ ★ &nbsp;&nbsp; One Nation, One Family Reunion &nbsp;&nbsp; ★ ★ ★</footer>
 
+<div class="overlay" id="overlay">
+  <div class="summary" id="summary"></div>
+</div>
+
 <script>
   // ====== CONFIG ======
-  // Change this to the email that should receive orders
-  const ORDER_RECIPIENT_EMAIL = "trutch+lakeview4th@gmail.com";
   const DATA_URL = "products.json";
 
   // ====== STATE ======
@@ -560,74 +750,97 @@
     html += `
       <div class="cart-totals">
         <span class="label">${totalQty} shirt${totalQty === 1 ? "" : "s"}</span>
-        <span class="total">$${total}</span>
+        <div style="text-align:right;">
+          <span class="total">~$${total}</span>
+          <span class="est">Estimated</span>
+        </div>
       </div>`;
     body.innerHTML = html;
     submit.disabled = false;
   }
 
-  // ====== SUBMIT ======
-  document.getElementById("submit-btn").addEventListener("click", submitOrder);
+  // ====== SUBMIT / SUMMARY ======
+  document.getElementById("submit-btn").addEventListener("click", showSummary);
+  document.getElementById("overlay").addEventListener("click", e => {
+    if (e.target.id === "overlay") closeSummary();
+  });
+  document.addEventListener("keydown", e => {
+    if (e.key === "Escape") closeSummary();
+  });
 
-  function submitOrder() {
+  function showSummary() {
     const familyName  = document.getElementById("family-name").value.trim();
     const contactName = document.getElementById("contact-name").value.trim();
-    const contactEmail = document.getElementById("contact-email").value.trim();
-    const contactPhone = document.getElementById("contact-phone").value.trim();
 
-    if (!familyName || !contactName || !contactEmail) {
-      alert("Please fill in family name, contact name, and email before submitting.");
+    if (!familyName) {
+      alert("Please enter the family / last name before reviewing your order.");
+      document.getElementById("family-name").focus();
       return;
     }
 
     const items = Object.values(cart);
     const total = items.reduce((sum, i) => sum + i.qty * i.price, 0);
+    const totalQty = items.reduce((sum, i) => sum + i.qty, 0);
+    const eventTitle = data.event?.title || "Lakeview Fourth of July 2026";
 
-    const orderPayload = {
-      event: data.event?.title || "Family Fourth of July",
-      submittedAt: new Date().toISOString(),
-      family: {
-        name: familyName,
-        contactName,
-        email: contactEmail,
-        phone: contactPhone
-      },
-      items: items.map(i => ({
-        style: i.styleName,
-        styleId: i.styleId,
-        ageGroup: i.ageGroup,
-        size: i.size,
-        quantity: i.qty,
-        unitPrice: i.price,
-        lineTotal: i.qty * i.price
-      })),
-      total
-    };
-
-    // Plain-text body for the email
-    let body = `New t-shirt order\n`;
-    body += `==================\n\n`;
-    body += `Family: ${familyName}\n`;
-    body += `Contact: ${contactName}\n`;
-    body += `Email: ${contactEmail}\n`;
-    if (contactPhone) body += `Phone: ${contactPhone}\n`;
-    body += `Submitted: ${orderPayload.submittedAt}\n\n`;
-    body += `Items:\n`;
+    let itemsHtml = "";
     items.forEach(i => {
       const groupLabel = i.ageGroup === "youth" ? "Youth" : "Adult";
-      body += `  - ${i.styleName} (${groupLabel} ${i.size}) ×${i.qty} @ $${i.price} = $${i.qty * i.price}\n`;
+      itemsHtml += `
+        <li>
+          <div>
+            <div class="summary-item-name">${escapeHtml(i.styleName)}</div>
+            <div class="summary-item-meta">${groupLabel} · Size ${i.size} · ×${i.qty}</div>
+          </div>
+          <div class="summary-item-price">~$${i.qty * i.price}</div>
+        </li>`;
     });
-    body += `\nTotal: $${total}\n\n`;
-    body += `---- JSON payload (application/json) ----\n`;
-    body += JSON.stringify(orderPayload, null, 2);
 
-    const subject = `T-Shirt Order — ${familyName} (${items.reduce((s,i)=>s+i.qty,0)} shirts, $${total})`;
-    const mailto =
-      "mailto:" + encodeURIComponent(ORDER_RECIPIENT_EMAIL) +
-      "?subject=" + encodeURIComponent(subject) +
-      "&body=" + encodeURIComponent(body);
+    const summary = document.getElementById("summary");
+    summary.innerHTML = `
+      <button class="summary-close" id="summary-close" aria-label="Close">×</button>
+      <div class="summary-header">
+        <div class="summary-eyebrow">T-Shirt Order</div>
+        <div class="summary-family">${escapeHtml(familyName)}</div>
+        <div class="summary-event">${escapeHtml(eventTitle)}</div>
+        ${contactName ? `<div class="summary-by">Placed by ${escapeHtml(contactName)}</div>` : ""}
+      </div>
 
-    window.location.href = mailto;
+      <div class="summary-section-title">Order Details</div>
+      <ul class="summary-items">${itemsHtml}</ul>
+
+      <div class="summary-total-block">
+        <span class="summary-total-label">${totalQty} shirt${totalQty === 1 ? "" : "s"}</span>
+        <div>
+          <div class="summary-total">~$${total}</div>
+          <div class="summary-est">Estimated — final cost depends on total order quantity</div>
+        </div>
+      </div>
+
+      <div class="summary-stars">★ ★ ★</div>
+      <div class="summary-footer">
+        Screenshot this and text it over to confirm your order!
+      </div>
+
+      <div class="summary-actions">
+        <button id="summary-back">Back to Edit</button>
+      </div>
+    `;
+
+    document.getElementById("overlay").classList.add("visible");
+    document.getElementById("summary-close").addEventListener("click", closeSummary);
+    document.getElementById("summary-back").addEventListener("click", closeSummary);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  function closeSummary() {
+    document.getElementById("overlay").classList.remove("visible");
+  }
+
+  function escapeHtml(str) {
+    return String(str).replace(/[&<>"']/g, c => ({
+      "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+    }[c]));
   }
 
   loadData();
