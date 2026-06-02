@@ -1,6 +1,6 @@
 {
   "event": {
-    "title": "Family Fourth of July 2026",
+    "title": "Lakeview Fourth of July 2026",
     "subtitle": "Order your shirts",
     "deadline": "Orders due by June 20, 2026"
   },
@@ -10,14 +10,14 @@
   },
   "styles": [
     {
-      "id": "stars-stripes-tee",
-      "name": "Stars & Stripes Tee",
-      "description": "Classic crew neck with a hand-drawn stars-and-stripes graphic across the chest.",
+      "id": "comfort-colors-ivory",
+      "name": "Adult Tee",
+      "description": "Comfort Colors shirt with 11th Annual Logo.",
       "price": 22,
-      "color": "Heather Navy",
-      "image": "images/stars-stripes-tee.jpg",
-      "imageAlt": "Stars and Stripes Tee mockup",
-      "ageGroups": ["adult", "youth"]
+      "color": "Ivory",
+      "image": "images/000.png",
+      "imageAlt": "Comfort Colors Ivory",
+      "ageGroups": ["adult"]
     },
     {
       "id": "fireworks-tank",
