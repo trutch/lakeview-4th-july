@@ -680,7 +680,7 @@
         <div class="style-body">
           <div class="style-head">
             <div class="style-name">${style.name}</div>
-            <div class="style-price">$${style.price.toFixed(2)}</div>
+            <div class="style-price">$${style.price}</div>
           </div>
           <div class="style-meta">${style.color}</div>
           <div class="style-desc">${style.description}</div>
@@ -743,7 +743,7 @@
             <div class="cart-item-name">${i.styleName}</div>
             <div class="cart-item-meta">${groupLabel} · ${i.size} · ×${i.qty}</div>
           </div>
-          <div class="cart-item-price">$${(i.qty * i.price).toFixed(2)}</div>
+          <div class="cart-item-price">$${i.qty * i.price}</div>
         </li>`;
     });
     html += "</ul>";
@@ -751,7 +751,7 @@
       <div class="cart-totals">
         <span class="label">${totalQty} shirt${totalQty === 1 ? "" : "s"}</span>
         <div style="text-align:right;">
-          <span class="total">~$${total.toFixed(2)}</span>
+          <span class="total">~$${total}</span>
           <span class="est">Estimated</span>
         </div>
       </div>`;
@@ -792,7 +792,7 @@
             <div class="summary-item-name">${escapeHtml(i.styleName)}</div>
             <div class="summary-item-meta">${groupLabel} · Size ${i.size} · ×${i.qty}</div>
           </div>
-          <div class="summary-item-price">~$${(i.qty * i.price).toFixed(2)}</div>
+          <div class="summary-item-price">~$${i.qty * i.price}</div>
         </li>`;
     });
 
@@ -812,7 +812,7 @@
       <div class="summary-total-block">
         <span class="summary-total-label">${totalQty} shirt${totalQty === 1 ? "" : "s"}</span>
         <div>
-          <div class="summary-total">~$${total.toFixed(2)}</div>
+          <div class="summary-total">~$${total}</div>
           <div class="summary-est">Estimated — final cost depends on total order quantity</div>
         </div>
       </div>
